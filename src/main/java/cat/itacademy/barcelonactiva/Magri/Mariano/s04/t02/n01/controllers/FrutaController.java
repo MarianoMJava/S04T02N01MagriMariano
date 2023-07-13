@@ -1,57 +1,51 @@
 package cat.itacademy.barcelonactiva.Magri.Mariano.s04.t02.n01.controllers;
 
-import cat.itacademy.barcelonactiva.Magri.Mariano.s04.t02.n01.model.domain.Fruta;
-import cat.itacademy.barcelonactiva.Magri.Mariano.s04.t02.n01.model.repository.FrutaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-import java.util.Optional;
-
+import cat.itacademy.barcelonactiva.Magri.Mariano.s04.t02.n01.model.domain.Fruta;
+import cat.itacademy.barcelonactiva.Magri.Mariano.s04.t02.n01.model.services.FrutaService;
 @RestController
 @RequestMapping("/fruta")
 public class FrutaController {
 
     @Autowired
-    private FrutaRepository frutaRepository;
+    FrutaService frutaService;
 
     @PostMapping("/add")
-    public ResponseEntity<String> addFruta(@RequestBody Fruta fruta){
-        frutaRepository.save(fruta);
-        return ResponseEntity.ok("Fruta agregada correctamente");
+    public ResponseEntity<?> add(@RequestBody Fruta fruta) {
+       return new ResponseEntity<>(frutaService.save(fruta), HttpStatus.CREATED);
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<String> updateFruta(@RequestBody Fruta fruta) {
-        // Lógica para actualizar una fruta en la base de datos
-        frutaRepository.save(fruta);
-        return ResponseEntity.ok("Fruta actualizada correctamente");
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> update(@PathVariable int id, @RequestBody Fruta fruta) {
+        return frutaService.update(id, fruta);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteFruta(@PathVariable int id) {
-        // Lógica para eliminar una fruta de la base de datos
-        frutaRepository.deleteById(id);
-        return ResponseEntity.ok("Fruta eliminada correctamente");
-    }
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable int id) {
+        return frutaService.delete(id);
 
-    @GetMapping("/getOne/{id}")
-    public ResponseEntity<Fruta> getFrutaById(@PathVariable int id) {
-        // Lógica para obtener una fruta por su ID de la base de datos
-        Optional<Fruta> frutaOptional = frutaRepository.findById(id);
-        if (frutaOptional.isPresent()) {
-            return ResponseEntity.ok(frutaOptional.get());
-        } else {
-            return ResponseEntity.notFound().build();
-        }
     }
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<Fruta>> getAllFrutas() {
-        // Lógica para obtener todas las frutas de la base de datos
-        List<Fruta> frutas = frutaRepository.findAll();
-        return ResponseEntity.ok(frutas);
+    public ResponseEntity<?> getAll() {
+        return frutaService.findAll();
+    }
+
+    @GetMapping("getOne/{id}")
+    public ResponseEntity<?> getOne(@PathVariable int id) {
+        return frutaService.getOne(id);
     }
 
 }

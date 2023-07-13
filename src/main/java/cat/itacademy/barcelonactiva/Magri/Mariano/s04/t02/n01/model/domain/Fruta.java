@@ -1,18 +1,32 @@
 package cat.itacademy.barcelonactiva.Magri.Mariano.s04.t02.n01.model.domain;
 
-public class Fruta {
-    private int id;
-    private String nombre;
-    private int cantidadQuilos;
+import jakarta.persistence.*;
 
-    // Constructor
-    public Fruta(int id, String nombre, int cantidadQuilos) {
-        this.id = id;
-        this.nombre = nombre;
-        this.cantidadQuilos = cantidadQuilos;
+@Entity
+@Table(name = "frutas")
+
+public class Fruta {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+
+    @Column(name = "nombre")
+    private String nombre;
+
+    @Column(name = "Kg")
+    private int quantitatQuilos;
+
+
+    public Fruta() {
+
     }
 
-    // Getters y setters
+    public Fruta(String nombre, int quantitatQuilos) {
+        this.nombre = nombre;
+        this.quantitatQuilos = quantitatQuilos;
+    }
+
     public int getId() {
         return id;
     }
@@ -29,11 +43,17 @@ public class Fruta {
         this.nombre = nombre;
     }
 
-    public int getCantidadQuilos() {
-        return cantidadQuilos;
+    public int getQuantitatQuilos() {
+        return quantitatQuilos;
     }
 
-    public void setCantidadQuilos(int cantidadQuilos) {
-        this.cantidadQuilos = cantidadQuilos;
+    public void setQuantitatQuilos(int quantitatQuilos) {
+        this.quantitatQuilos = quantitatQuilos;
     }
+
+    @Override
+    public String toString() {
+        return "Fruta [id=" + id + ", nombre=" + nombre + ", quantitatQuilos=" + quantitatQuilos + "]";
+    }
+
 }
