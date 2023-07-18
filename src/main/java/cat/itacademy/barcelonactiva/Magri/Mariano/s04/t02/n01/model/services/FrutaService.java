@@ -12,7 +12,7 @@ import java.util.Optional;
 
 
 @Service
-public class FrutaService {
+public class FrutaService implements FrutaServiceInterface{
 
     @Autowired
     FrutaRepository repo;

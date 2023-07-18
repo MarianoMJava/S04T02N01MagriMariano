@@ -1,5 +1,6 @@
 package cat.itacademy.barcelonactiva.Magri.Mariano.s04.t02.n01.controllers;
 
+import cat.itacademy.barcelonactiva.Magri.Mariano.s04.t02.n01.model.services.FrutaServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
@@ -19,8 +20,10 @@ import cat.itacademy.barcelonactiva.Magri.Mariano.s04.t02.n01.model.services.Fru
 @RequestMapping("/fruta")
 public class FrutaController {
 
-    @Autowired
-    FrutaService frutaService;
+    private final FrutaServiceInterface frutaService;
+    public FrutaController (FrutaServiceInterface frutaService){
+        this.frutaService=frutaService;
+    }
 
     @PostMapping("/add")
     public ResponseEntity<?> add(@RequestBody Fruta fruta) {
@@ -35,7 +38,6 @@ public class FrutaController {
     @DeleteMapping("delete/{id}")
     public ResponseEntity<?> delete(@PathVariable int id) {
         return frutaService.delete(id);
-
     }
 
     @GetMapping("/getAll")
