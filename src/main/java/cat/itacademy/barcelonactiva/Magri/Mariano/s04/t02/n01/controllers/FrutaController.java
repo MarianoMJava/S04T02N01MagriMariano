@@ -3,6 +3,7 @@ package cat.itacademy.barcelonactiva.Magri.Mariano.s04.t02.n01.controllers;
 import cat.itacademy.barcelonactiva.Magri.Mariano.s04.t02.n01.model.services.FrutaServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,6 +21,8 @@ import cat.itacademy.barcelonactiva.Magri.Mariano.s04.t02.n01.model.services.Fru
 @RequestMapping("/fruta")
 public class FrutaController {
 
+    @Value("${json.file.path}")
+    private String jsonFilePath;
     private final FrutaServiceInterface frutaService;
     public FrutaController (FrutaServiceInterface frutaService){
         this.frutaService=frutaService;
