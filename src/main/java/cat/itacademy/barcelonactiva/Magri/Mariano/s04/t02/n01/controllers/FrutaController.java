@@ -19,17 +19,15 @@ import cat.itacademy.barcelonactiva.Magri.Mariano.s04.t02.n01.model.domain.Fruta
 import cat.itacademy.barcelonactiva.Magri.Mariano.s04.t02.n01.model.services.FrutaService;
 @RestController
 @RequestMapping("/fruta")
-public class FrutaController {
 
-    @Value("${json.file.path}")
-    private String jsonFilePath;
+public class FrutaController {
     private final FrutaServiceInterface frutaService;
     public FrutaController (FrutaServiceInterface frutaService){
         this.frutaService=frutaService;
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> add(@RequestBody Fruta fruta) {
+    public ResponseEntity<Fruta> add(@RequestBody Fruta fruta) {
        return new ResponseEntity<>(frutaService.save(fruta), HttpStatus.CREATED);
     }
 
