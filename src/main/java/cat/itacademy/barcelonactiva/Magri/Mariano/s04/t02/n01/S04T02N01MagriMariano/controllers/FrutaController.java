@@ -1,9 +1,8 @@
-package cat.itacademy.barcelonactiva.Magri.Mariano.s04.t02.n01.controllers;
+package cat.itacademy.barcelonactiva.Magri.Mariano.s04.t02.n01.S04T02N01MagriMariano.controllers;
 
-import cat.itacademy.barcelonactiva.Magri.Mariano.s04.t02.n01.model.services.FrutaServiceInterface;
-import org.springframework.beans.factory.annotation.Autowired;
+import cat.itacademy.barcelonactiva.Magri.Mariano.s04.t02.n01.S04T02N01MagriMariano.model.services.FrutaServiceInterface;
 
-import org.springframework.beans.factory.annotation.Value;
+import cat.itacademy.barcelonactiva.Magri.Mariano.s04.t02.n01.S04T02N01MagriMariano.model.domain.Fruta;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import cat.itacademy.barcelonactiva.Magri.Mariano.s04.t02.n01.model.domain.Fruta;
-import cat.itacademy.barcelonactiva.Magri.Mariano.s04.t02.n01.model.services.FrutaService;
 @RestController
 @RequestMapping("/fruta")
 
@@ -28,7 +25,7 @@ public class FrutaController {
 
     @PostMapping("/add")
     public ResponseEntity<Fruta> add(@RequestBody Fruta fruta) {
-       return new ResponseEntity<>(frutaService.save(fruta), HttpStatus.CREATED);
+       return new ResponseEntity<Fruta>(frutaService.save(fruta), HttpStatus.CREATED);
     }
 
     @PutMapping("/update/{id}")

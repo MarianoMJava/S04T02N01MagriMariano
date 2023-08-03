@@ -1,6 +1,6 @@
-package cat.itacademy.barcelonactiva.Magri.Mariano.s04.t02.n01.model.repository;
+package cat.itacademy.barcelonactiva.Magri.Mariano.s04.t02.n01.S04T02N01MagriMariano.model.repository;
 
-import cat.itacademy.barcelonactiva.Magri.Mariano.s04.t02.n01.model.domain.Fruta;
+import cat.itacademy.barcelonactiva.Magri.Mariano.s04.t02.n01.S04T02N01MagriMariano.model.domain.Fruta;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package cat.itacademy.barcelonactiva.Magri.Mariano.s04.t02.n01.model.domain;
+package cat.itacademy.barcelonactiva.Magri.Mariano.s04.t02.n01.S04T02N01MagriMariano.model.domain;
 
 import jakarta.persistence.*;
 
@@ -16,7 +16,6 @@ public class Fruta {
 
     @Column(name = "Kg")
     private int quantitatQuilos;
-
 
     public Fruta() {
 
